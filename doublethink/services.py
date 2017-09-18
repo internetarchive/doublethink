@@ -276,7 +276,7 @@ class ServiceRegistry(object):
         '''
         try:
             result = self.rr.table('services').get_all(role, index='role').filter(
-                    lambda svc: r.now().sub(svc["last_heartbeat"]) < svc["ttl"]
+                    lambda svc: r.now().sub(svc["last_heartbeat"]).lt(svc["ttl"])
                 ).order_by("load")[0].run()
             return result
         except r.ReqlNonExistenceError:
@@ -302,7 +302,7 @@ class ServiceRegistry(object):
             if role:
                 query = query.get_all(role, index='role')
             query = query.filter(
-                lambda svc: r.now().sub(svc["last_heartbeat"]) < svc["ttl"]   #.default(20.0)
+                lambda svc: r.now().sub(svc["last_heartbeat"]).lt(svc["ttl"])   #.default(20.0)
             ).order_by("load")
             result = query.run()
             return result

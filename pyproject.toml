@@ -1,0 +1,24 @@
+[project]
+name = "doublethink"
+authors = [
+  { name="Noah Levitt", email="nlevitt@archive.org" },
+]
+maintainers = [
+  { name="Barbara Miller", email="barbara@archive.org" },
+]
+description = "rethinkdb python library"
+readme = "README.rst"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dynamic = [ "version", "license", "scripts", "dependencies", "optional-dependencies" ]
+
+[project.urls]
+Homepage = "https://github.com/internetarchive/doublethink"
+Issues = "https://github.com/internetarchive/doublethink/issues"
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

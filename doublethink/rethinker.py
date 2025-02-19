@@ -1,7 +1,7 @@
 '''
 doublethink/rethinker.py - rethinkdb connection-manager
 
-Copyright (C) 2015-2024 Internet Archive
+Copyright (C) 2015-2025 Internet Archive
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import types
 import re
 
 r = rdb.RethinkDB()
+
+RETHINKDB_TIMEOUT = 300
 
 class RethinkerWrapper(object):
     logger = logging.getLogger('doublethink.RethinkerWrapper')
@@ -126,9 +128,9 @@ class Rethinker(object):
             try:
                 try:
                     host, port = server.split(':')
-                    return r.connect(host=host, port=port)
+                    return r.connect(host=host, port=port, timeout=RETHINKDB_TIMEOUT)
                 except ValueError:
-                    return r.connect(host=server)
+                    return r.connect(host=server, timeout=RETHINKDB_TIMEOUT)
             except Exception as e:
                 self.last_error[server] = time.time()
                 self.logger.warning(

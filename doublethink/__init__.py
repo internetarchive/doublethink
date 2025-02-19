@@ -2,7 +2,7 @@
 doublethink/__init__.py - rethinkdb connection-manager-ish thing and service
 registry thing
 
-Copyright (C) 2015-2017 Internet Archive
+Copyright (C) 2015-2025 Internet Archive
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -126,9 +126,9 @@ class Rethinker(object):
             try:
                 try:
                     host, port = server.split(':')
-                    return r.connect(host=host, port=port)
+                    return r.connect(host=host, port=port, timeout=300)
                 except ValueError:
-                    return r.connect(host=server)
+                    return r.connect(host=server, timeout=300)
             except Exception as e:
                 self.last_error[server] = time.time()
                 self.logger.warning(

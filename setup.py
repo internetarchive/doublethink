@@ -10,13 +10,14 @@ except:
 
 setuptools.setup(
     name='doublethink',
-    version='0.4.9',
+    version='0.4.10',
     packages=['doublethink'],
     classifiers=[
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
     install_requires=['rethinkdb==2.4.9'],
     extras_require={'test': test_deps},

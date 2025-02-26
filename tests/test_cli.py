@@ -18,11 +18,11 @@ limitations under the License.
 
 import doublethink
 import doublethink.cli
+import importlib.metadata
 import logging
 import sys
 import pytest
 import rethinkdb as rdb
-import pkg_resources
 
 r = rdb.RethinkDB()
 
@@ -50,10 +50,16 @@ def rr():
     assert result["dbs_created"] == 1
     return RethinkerForTesting(db="doublethink_test_db")
 
+def console_scripts():
+    return {
+        ep.name: ep
+        for ep in importlib.metadata.distribution("doublethink").entry_points
+        if ep.group == "console_scripts"
+    }
+
 def test_cli(capsys, rr):
-    entrypoint = pkg_resources.get_entry_map(
-            'doublethink')['console_scripts']['doublethink-purge-stale-services']
-    callable = entrypoint.resolve()
+    entrypoint = console_scripts()['doublethink-purge-stale-services']
+    callable = entrypoint.load()
     with pytest.raises(SystemExit) as exit:
         callable(['doublethink-purge-stale-services'])
     print(dir(exit))

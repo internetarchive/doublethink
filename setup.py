@@ -19,7 +19,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
     ],
-    install_requires=['rethinkdb==2.4.9'],
+    install_requires=['rethinkdb==2.4.10.post1'],
     extras_require={'test': test_deps},
     url='https://github.com/internetarchive/doublethink',
     author='Noah Levitt',
